@@ -19,7 +19,7 @@ func (m Module) SearchByName(ctx context.Context, movieName string) (map[string]
 		return resp, err
 	}
 
-	resp, err = httpclient.DoRequest(ctx, httpclient.Request{
+	resp, err = m.endpoint.http.DoRequest(ctx, httpclient.Request{
 		ApiUrl: ConstOmdbApiUrl,
 		QueryParams: map[string]string{
 			"apikey": ConstApiKey,
@@ -45,7 +45,7 @@ func (m Module) GetDetailByID(ctx context.Context, id string) (map[string]interf
 		return resp, err
 	}
 
-	resp, err = httpclient.DoRequest(ctx, httpclient.Request{
+	resp, err = m.endpoint.http.DoRequest(ctx, httpclient.Request{
 		ApiUrl: ConstOmdbApiUrl,
 		QueryParams: map[string]string{
 			"apikey": ConstApiKey,

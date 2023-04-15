@@ -1,6 +1,8 @@
 package movie
 
 import (
+	"github.com/IshlahulHanif/poneglyph"
+	"github.com/movieapi/pkg/httpclient"
 	"github.com/movieapi/utils"
 	"sync"
 )
@@ -16,8 +18,16 @@ func GetInstance(c utils.Config) (Module, error) {
 	)
 
 	once.Do(func() {
+		http, err := httpclient.GetInstance(c)
+		if err != nil {
+			errFinal = poneglyph.Trace(err)
+			return
+		}
+
 		m = Module{
-			endpoint: endpoint{},
+			endpoint: endpoint{
+				http: http,
+			},
 		}
 	})
 

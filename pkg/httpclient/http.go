@@ -9,7 +9,7 @@ import (
 	"net/url"
 )
 
-func DoRequest(ctx context.Context, request Request) (map[string]interface{}, error) {
+func (m Module) DoRequest(ctx context.Context, request Request) (map[string]interface{}, error) {
 	var result = make(map[string]interface{})
 
 	// create a new request
