@@ -33,7 +33,7 @@ func (m Module) DoRequest(ctx context.Context, request Request) (map[string]inte
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		// handle error
+		return result, poneglyph.Trace(err)
 	}
 	defer resp.Body.Close()
 
